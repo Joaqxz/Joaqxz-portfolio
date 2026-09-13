@@ -1,0 +1,26 @@
+{
+  "name": "joaquim-portfolio-angular",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "ng serve --port 4300",
+    "dev": "ng serve --port 4300",
+    "build": "ng build",
+    "build:dev": "ng build --configuration development",
+    "preview": "ng serve --configuration production"
+  },
+  "dependencies": {
+    "@angular/common": "^20.2.0",
+    "@angular/compiler": "^20.2.0",
+    "@angular/core": "^20.2.0",
+    "@angular/forms": "^20.2.0",
+    "@angular/platform-browser": "^20.2.0",
+    "zone.js": "^0.15.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^20.2.0",
+    "@angular/cli": "^20.2.0",
+    "@angular/compiler-cli": "^20.2.0",
+    "typescript": "~5.9.2"
+  }
+}

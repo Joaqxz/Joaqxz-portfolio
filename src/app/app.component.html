@@ -1,0 +1,108 @@
+<div class="page-shell">
+  <header class="site-header" [class.scrolled]="scrolled">
+    <nav class="container nav-bar" aria-label="Navegação principal">
+      <a class="brand" href="#inicio">Joaquim<span>.Dev</span></a>
+      <ul class="desktop-nav">
+        @for (link of navigationLinks; track link.href) {
+          <li><a href="{{ link.href }}">{{ link.label }}</a></li>
+        }
+      </ul>
+      <div class="nav-actions">
+        <a class="button button-primary hire-button" href="#contato">✦ <span>Contratar</span></a>
+        <button class="menu-button" type="button" aria-label="Abrir menu" (click)="menuOpen = !menuOpen">{{ menuOpen ? '×' : '☰' }}</button>
+      </div>
+    </nav>
+    @if (menuOpen) {
+      <div class="mobile-menu">
+        @for (link of navigationLinks; track link.href) {
+          <a href="{{ link.href }}" (click)="closeMenu()">{{ link.label }}</a>
+        }
+        <a class="button button-primary" href="#contato" (click)="closeMenu()">Entrar em contato</a>
+      </div>
+    }
+  </header>
+
+  <main>
+    <section id="inicio" class="hero section-grid">
+      <div class="hero-background"></div>
+      <div class="container hero-layout">
+        <div class="hero-copy reveal">
+          <span class="availability"><i></i> DISPONÍVEL PARA PROJETOS E OPORTUNIDADES</span>
+          <h1>Joaquim <span>Almeida</span></h1>
+          <p class="hero-subtitle">Aspirante a Desenvolvedor Full Stack</p>
+          <p class="hero-description">Sou um profissional focado em resultados, com sólida base em tecnologia e desenvolvimento web. Aplico boas práticas para desenvolver aplicações modernas, eficientes e escaláveis.</p>
+          <div class="button-row">
+            <a class="button button-primary" href="#contato">Entrar em contato <span>→</span></a>
+            <a class="button button-outline" href="https://github.com/Joaqxz" target="_blank" rel="noreferrer">◉ GitHub</a>
+          </div>
+        </div>
+        <div class="code-window reveal reveal-delay">
+          <div class="window-bar"><i></i><i></i><i></i><span>joaquim.ts</span></div>
+          <pre><code><b>const</b> <em>dev</em> = {{ '{' }}
+  nome: <strong>"Joaquim Almeida"</strong>,
+  stack: <strong>["Angular", "Node", "SQL"]</strong>,
+  foco: <strong>"Full Stack"</strong>,
+  status: <strong>"disponível"</strong>,
+{{ '}' }};</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics container">
+      @for (metric of metrics; track metric.label) {
+        <article class="glass metric"><strong>{{ metric.value }}</strong><span>{{ metric.label }}</span></article>
+      }
+    </section>
+
+    <section id="sobre" class="container content-section about-layout">
+      <div>
+        <p class="eyebrow">SOBRE MIM</p>
+        <h2>Código limpo, <span>resultados reais</span></h2>
+        <p class="muted large-copy">Nascido em Quissamã - RJ e residente na Ilha do Governador - RJ, sou apaixonado por tecnologia e evolução contínua. Gosto de transformar ideias em produtos digitais bem construídos, com atenção a detalhe, performance e experiência do usuário.</p>
+        <p class="muted large-copy">Busco constantemente novos desafios que me permitam aprender, colaborar em equipe e entregar soluções que realmente resolvem problemas.</p>
+      </div>
+      <div class="info-grid">
+        @for (item of aboutInfo; track item.label) {
+          <article class="glass info-card"><strong class="info-icon">{{ item.icon }}</strong><small>{{ item.label }}</small><span>{{ item.value }}</span></article>
+        }
+      </div>
+    </section>
+
+    <section id="experiencia" class="container content-section">
+      <p class="eyebrow">TRAJETÓRIA</p>
+      <h2>Experiência e <span>Habilidades</span></h2>
+      <div class="experience-layout">
+        <div class="timeline">
+          @for (item of timeline; track item.role) {
+            <article class="timeline-item"><i>{{ item.icon }}</i><div class="glass timeline-card"><h3>{{ item.role }}</h3><p class="muted">{{ item.desc }}</p></div></article>
+          }
+        </div>
+        <div class="skills-column">
+          <div><h3 class="subheading">Diferenciais competitivos</h3><div class="pill-list">@for (skill of strengths; track skill) { <span class="pill">✦ {{ skill }}</span> }</div></div>
+          <div><h3 class="subheading">Hobbies &amp; Interesses</h3><div class="hobbies-grid">@for (hobby of hobbies; track hobby) { <span class="glass hobby">◈<b>{{ hobby }}</b></span> }</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos" class="container content-section">
+      <p class="eyebrow">PORTFÓLIO</p>
+      <h2>Projetos &amp; <span>Tech Stack</span></h2>
+      <div class="filter-row">@for (filter of filters; track filter) { <button class="filter" [class.active]="activeCategory === filter" (click)="activeCategory = filter">{{ filter }}</button> }</div>
+      <div class="project-grid">
+        @for (project of filteredProjects(); track project.title) {
+          <a class="glass project-card" [href]="project.link" target="_blank" rel="noreferrer"><div class="project-title"><h3>{{ project.title }}</h3><span>↗</span></div><p class="muted">{{ project.desc }}</p><div class="tag-row">@for (tag of project.tags; track tag) { <small>{{ tag }}</small> }</div></a>
+        }
+      </div>
+      <h3 class="subheading technology-title">Tecnologias</h3>
+      <div class="tech-grid">@for (tech of filteredTechs(); track tech.name) { <div class="glass tech-card"><b>{{ tech.name }}</b><small>{{ tech.level }}</small></div> }</div>
+      <a class="button button-outline repository-button" href="https://github.com/Joaqxz" target="_blank" rel="noreferrer">◉ Ver todos os repositórios</a>
+    </section>
+
+    <section id="contato" class="container content-section contact-layout">
+      <div><p class="eyebrow">CONTATO</p><h2>Vamos construir <span>algo juntos</span>.</h2><p class="muted large-copy">Aberto a oportunidades profissionais e conexões na área de tecnologia.</p><div class="social-list">@for (social of socials; track social.label) { <a class="glass social" [href]="social.href" target="{{ social.href.startsWith('http') ? '_blank' : '_self' }}" rel="noreferrer"><b>{{ social.icon }}</b><span><small>{{ social.label }}</small>{{ social.value }}</span></a> }</div></div>
+      <form class="glass contact-form" (ngSubmit)="submitForm()" #contactForm="ngForm"><label for="nome">Nome</label><input id="nome" name="nome" required [(ngModel)]="form.nome" placeholder="Seu nome"><label for="email">E-mail</label><input id="email" name="email" type="email" required [(ngModel)]="form.email" placeholder="voce@email.com"><label for="mensagem">Mensagem</label><textarea id="mensagem" name="mensagem" rows="5" required [(ngModel)]="form.mensagem" placeholder="Conte sobre a oportunidade ou projeto..."></textarea><button class="button button-primary full-width" type="submit" [disabled]="contactForm.invalid || sending">{{ sending ? 'Enviando...' : '✈ Enviar mensagem' }}</button>@if (sent) { <p class="success">✓ Mensagem enviada diretamente para Joaquim.</p> } @if (submitError) { <p class="error">Não foi possível enviar agora. Tente novamente em instantes.</p> }</form>
+    </section>
+  </main>
+
+  <footer><div class="container footer-content"><b class="brand">Joaquim<span>.Dev</span></b><small>© 2026 Joaquim Almeida. Todos os direitos reservados.</small><button class="button button-outline" (click)="scrollTop()">↑ Voltar ao topo</button></div></footer>
+</div>
